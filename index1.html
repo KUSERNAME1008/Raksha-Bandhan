@@ -1,0 +1,4278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Raksha Bandhan ❤️</title>
+
+    <link rel="stylesheet" href="style1.css">
+
+
+    <!-- =================================================
+         EXTRA STYLES FOR MEMORY LETTERS
+    ================================================== -->
+
+    <style>
+
+        /* =================================================
+           MEMORY LETTER SECTION
+        ================================================== */
+
+        .letters-section {
+
+            min-height: 100vh;
+
+            padding: 120px 7vw;
+
+            position: relative;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            align-items: center;
+
+            z-index: 5;
+
+        }
+
+
+        .letters-heading {
+
+            text-align: center;
+
+            max-width: 650px;
+
+            margin-bottom: 70px;
+
+        }
+
+
+        .letters-heading h2 {
+
+            font-size: clamp(3rem, 7vw, 6rem);
+
+            line-height: 0.95;
+
+            margin: 15px 0 25px;
+
+        }
+
+
+        .letters-heading h2 span {
+
+            color: #c9923e;
+
+        }
+
+
+        .letters-heading p:not(.eyebrow) {
+
+            line-height: 1.8;
+
+            opacity: 0.75;
+
+        }
+
+
+        /* =================================================
+           LETTER GRID
+        ================================================== */
+
+        .letters-container {
+
+            width: 100%;
+
+            max-width: 1150px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 25px;
+
+        }
+
+
+        .memory-letter {
+
+            border: none;
+
+            background: transparent;
+
+            padding: 0;
+
+            cursor: pointer;
+
+            perspective: 1000px;
+
+        }
+
+
+        .envelope {
+
+            height: 260px;
+
+            position: relative;
+
+            border-radius: 12px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #f8e3c0,
+                    #d9ad70
+                );
+
+            box-shadow:
+                0 25px 50px
+                rgba(70, 35, 15, 0.18);
+
+            transition:
+                transform 0.5s ease,
+                box-shadow 0.5s ease;
+
+        }
+
+
+        .memory-letter:hover .envelope {
+
+            transform:
+                translateY(-14px)
+                rotateX(5deg)
+                rotateY(-4deg);
+
+            box-shadow:
+                0 35px 70px
+                rgba(70, 35, 15, 0.28);
+
+        }
+
+
+        .envelope-top {
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 55%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eed0a0,
+                    #c78d4f
+                );
+
+            clip-path:
+                polygon(
+                    0 0,
+                    100% 0,
+                    50% 70%
+                );
+
+            z-index: 3;
+
+        }
+
+
+        .envelope-front {
+
+            position: absolute;
+
+            bottom: 0;
+            left: 0;
+
+            width: 100%;
+            height: 60%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f3d7ad,
+                    #d49b59
+                );
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: flex-end;
+
+            padding-bottom: 25px;
+
+            z-index: 4;
+
+            clip-path:
+                polygon(
+                    0 15%,
+                    50% 65%,
+                    100% 15%,
+                    100% 100%,
+                    0 100%
+                );
+
+        }
+
+
+        .envelope-front span {
+
+            font-size: 0.85rem;
+
+            letter-spacing: 1px;
+
+            color: #5c371e;
+
+            font-weight: 600;
+
+        }
+
+
+        .letter-paper {
+
+            position: absolute;
+
+            width: 82%;
+
+            height: 75%;
+
+            left: 9%;
+
+            top: 12%;
+
+            background: #fffaf1;
+
+            border-radius: 5px;
+
+            padding: 25px 15px;
+
+            text-align: center;
+
+            z-index: 2;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0,0,0,0.08);
+
+        }
+
+
+        .letter-icon {
+
+            font-size: 2rem;
+
+            display: block;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .letter-paper h3 {
+
+            margin: 5px 0 10px;
+
+            font-size: 1.15rem;
+
+            color: #713b2d;
+
+        }
+
+
+        .letter-paper p {
+
+            font-size: 0.8rem;
+
+            opacity: 0.65;
+
+        }
+
+
+        /* =================================================
+           POPUP
+        ================================================== */
+
+        .memory-overlay {
+
+            position: fixed;
+
+            inset: 0;
+
+            background:
+                rgba(38, 18, 13, 0.82);
+
+            backdrop-filter:
+                blur(10px);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 30px;
+
+            z-index: 10000;
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transition:
+                opacity 0.4s ease,
+                visibility 0.4s ease;
+
+        }
+
+
+        .memory-overlay.active {
+
+            opacity: 1;
+
+            visibility: visible;
+
+        }
+
+
+        .memory-popup {
+
+            width: min(1050px, 95vw);
+
+            max-height: 90vh;
+
+            overflow-y: auto;
+
+            background:
+                #fff9f0;
+
+            border-radius: 20px;
+
+            position: relative;
+
+            box-shadow:
+                0 40px 100px
+                rgba(0,0,0,0.4);
+
+        }
+
+
+        .memory-close {
+
+            position: absolute;
+
+            top: 15px;
+            right: 20px;
+
+            width: 42px;
+            height: 42px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,0.8);
+
+            font-size: 28px;
+
+            cursor: pointer;
+
+            z-index: 20;
+
+            color: #713b2d;
+
+        }
+
+
+        .memory-page {
+
+            display: none;
+
+            min-height: 620px;
+
+            grid-template-columns:
+                1fr 1fr;
+
+        }
+
+
+        .memory-page.active {
+
+            display: grid;
+
+        }
+
+
+        /* =================================================
+           MEMORY SCENE
+        ================================================== */
+
+        .memory-scene {
+
+            min-height: 620px;
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #f5c58e,
+                    #d98758
+                );
+
+        }
+
+
+        /* SUN */
+
+        .scene-sun {
+
+            position: absolute;
+
+            width: 100px;
+            height: 100px;
+
+            border-radius: 50%;
+
+            background: #ffe4a1;
+
+            top: 70px;
+            right: 70px;
+
+            box-shadow:
+                0 0 60px
+                rgba(255,220,120,0.8);
+
+        }
+
+
+        /* TREE */
+
+        .tree-trunk {
+
+            position: absolute;
+
+            width: 65px;
+
+            height: 300px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #633d24,
+                    #936039,
+                    #5a351f
+                );
+
+            bottom: 0;
+
+            left: 100px;
+
+            border-radius:
+                30px 30px 5px 5px;
+
+        }
+
+
+        .tree-leaves {
+
+            position: absolute;
+
+            width: 260px;
+            height: 220px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    #6e8b45,
+                    #3d6238
+                );
+
+            top: 100px;
+
+            left: 10px;
+
+            box-shadow:
+                60px 30px 0 #56763d,
+                110px 5px 0 #466b39,
+                130px 70px 0 #5d8041;
+
+        }
+
+
+        /* =================================================
+           CHILDREN
+        ================================================== */
+
+        .child {
+
+            position: absolute;
+
+            width: 80px;
+
+            height: 180px;
+
+        }
+
+
+        .child-head {
+
+            width: 55px;
+
+            height: 55px;
+
+            border-radius: 50%;
+
+            background:
+                #d59a70;
+
+            position: absolute;
+
+            top: 0;
+
+            left: 12px;
+
+            z-index: 2;
+
+        }
+
+
+        .child-body {
+
+            position: absolute;
+
+            width: 65px;
+
+            height: 95px;
+
+            top: 50px;
+
+            left: 7px;
+
+            border-radius:
+                25px 25px 10px 10px;
+
+            background:
+                #456b91;
+
+        }
+
+
+        .child-leg {
+
+            position: absolute;
+
+            width: 18px;
+
+            height: 70px;
+
+            background:
+                #3e3a38;
+
+            top: 135px;
+
+            border-radius: 10px;
+
+        }
+
+
+        .leg-left {
+
+            left: 17px;
+
+            transform:
+                rotate(8deg);
+
+        }
+
+
+        .leg-right {
+
+            right: 17px;
+
+            transform:
+                rotate(-8deg);
+
+        }
+
+
+        .brother {
+
+            bottom: 45px;
+
+            left: 42%;
+
+            transform:
+                rotate(-5deg);
+
+        }
+
+
+        .sister {
+
+            bottom: 45px;
+
+            left: 65%;
+
+            transform:
+                rotate(5deg);
+
+        }
+
+
+        .sister .child-body {
+
+            background:
+                #b94d68;
+
+        }
+
+
+        .memory-ball {
+
+            position: absolute;
+
+            bottom: 150px;
+
+            left: 58%;
+
+            font-size: 42px;
+
+            color: #f7d26b;
+
+            animation:
+                ballBounce 2s ease-in-out infinite;
+
+        }
+
+
+        @keyframes ballBounce {
+
+            0%,100% {
+                transform:
+                    translateY(0);
+            }
+
+            50% {
+                transform:
+                    translateY(-25px);
+            }
+
+        }
+
+
+        /* =================================================
+           MEMORY WRITING
+        ================================================== */
+
+        .memory-writing {
+
+            padding: 75px 60px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+        }
+
+
+        .memory-writing h2 {
+
+            font-size:
+                clamp(2.5rem, 5vw, 4.5rem);
+
+            line-height: 1;
+
+            margin: 15px 0 30px;
+
+            color: #5a3025;
+
+        }
+
+
+        .memory-writing h2 span {
+
+            color: #bd7a39;
+
+        }
+
+
+        .memory-writing p {
+
+            line-height: 1.8;
+
+            color: #6e5147;
+
+        }
+
+
+        /* =================================================
+           JHULA SCENE
+        ================================================== */
+
+        .scene-jhula {
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #a9d8df 0%,
+                    #d8efdc 58%,
+                    #9ebc69 59%,
+                    #718c4b 100%
+                );
+
+        }
+
+
+        .jhula-trunk {
+
+            position: absolute;
+
+            width: 75px;
+
+            height: 500px;
+
+            left: 50px;
+
+            bottom: -40px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #5b3825,
+                    #8b5b37,
+                    #4c2e20
+                );
+
+            border-radius: 40px;
+
+        }
+
+
+        .jhula-branch {
+
+            position: absolute;
+
+            width: 470px;
+
+            height: 55px;
+
+            background:
+                #68432b;
+
+            top: 95px;
+
+            left: 60px;
+
+            border-radius: 30px;
+
+            transform:
+                rotate(-3deg);
+
+        }
+
+
+        .jhula-rope {
+
+            position: absolute;
+
+            width: 6px;
+
+            height: 310px;
+
+            background:
+                #d9b978;
+
+            top: 120px;
+
+            transform-origin:
+                top center;
+
+        }
+
+
+        .rope-left {
+
+            left: 47%;
+
+            transform:
+                rotate(5deg);
+
+        }
+
+
+        .rope-right {
+
+            left: 69%;
+
+            transform:
+                rotate(-5deg);
+
+        }
+
+
+        .jhula-seat {
+
+            position: absolute;
+
+            width: 250px;
+
+            height: 22px;
+
+            border-radius: 20px;
+
+            background:
+                #8a532f;
+
+            top: 420px;
+
+            left: 37%;
+
+            animation:
+                swing 3s ease-in-out infinite;
+
+        }
+
+
+        .jhula-sister {
+
+            top: 270px;
+
+            left: 49%;
+
+            transform:
+                scale(0.75);
+
+            animation:
+                swing 3s ease-in-out infinite;
+
+        }
+
+
+        .jhula-brother {
+
+            top: 390px;
+
+            left: 68%;
+
+            transform:
+                scale(0.55);
+
+        }
+
+
+        @keyframes swing {
+
+            0%,100% {
+                transform:
+                    rotate(-5deg);
+            }
+
+            50% {
+                transform:
+                    rotate(5deg);
+            }
+
+        }
+
+
+        /* =================================================
+           SONG CARD
+        ================================================== */
+
+        .song-card {
+
+            margin:
+                15px 0 30px;
+
+            padding:
+                25px 20px;
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f4dfbd,
+                    #efd0a4
+                );
+
+            border-left:
+                4px solid #bd7a39;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+            box-shadow:
+                0 10px 25px
+                rgba(80,40,20,0.08);
+
+        }
+
+
+        .song-card p {
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size: 1.2rem;
+
+            color: #66382d;
+
+            margin: 0;
+
+            font-style: italic;
+
+        }
+
+
+        .music-note {
+
+            font-size: 2rem;
+
+            color: #b66b32;
+
+        }
+
+
+        .soft-note {
+
+            font-style: italic;
+
+            opacity: 0.7;
+
+        }
+
+
+        /* =================================================
+           GROWING SCENE
+        ================================================== */
+
+        .scene-growing {
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #e9c6a8,
+                    #f2d7b4 55%,
+                    #a9b976 56%,
+                    #738c4c
+                );
+
+        }
+
+
+        .memory-sky {
+
+            position: absolute;
+
+            width: 130px;
+            height: 130px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,230,160,0.8);
+
+            top: 80px;
+            right: 80px;
+
+        }
+
+
+        .memory-ground {
+
+            position: absolute;
+
+            width: 100%;
+            height: 50%;
+
+            bottom: 0;
+
+            background:
+                #758f4d;
+
+        }
+
+
+        .growing-brother,
+        .growing-sister {
+
+            position: absolute;
+
+            bottom: 80px;
+
+            width: 100px;
+
+            height: 330px;
+
+        }
+
+
+        .growing-brother {
+
+            left: 28%;
+
+        }
+
+
+        .growing-sister {
+
+            left: 58%;
+
+        }
+
+
+        .growing-head {
+
+            position: absolute;
+
+            width: 80px;
+
+            height: 80px;
+
+            border-radius: 50%;
+
+            background: #cf906c;
+
+            left: 10px;
+
+        }
+
+
+        .growing-body {
+
+            position: absolute;
+
+            top: 75px;
+
+            width: 100px;
+
+            height: 220px;
+
+            border-radius:
+                35px 35px 10px 10px;
+
+            background: #536f8e;
+
+        }
+
+
+        .growing-sister .growing-body {
+
+            background: #ad506d;
+
+        }
+
+
+        .heart-path {
+
+            position: absolute;
+
+            bottom: 110px;
+
+            left: 43%;
+
+            display: flex;
+
+            gap: 35px;
+
+            color: #b94d68;
+
+            font-size: 25px;
+
+        }
+
+
+        /* =================================================
+           RAKHI MEMORY SCENE
+        ================================================== */
+
+        .scene-rakhi {
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #e8c69d,
+                    #f7dfc0
+                );
+
+        }
+
+
+        .rakhi-window {
+
+            position: absolute;
+
+            width: 220px;
+
+            height: 260px;
+
+            top: 60px;
+
+            left: 50%;
+
+            transform:
+                translateX(-50%);
+
+            border:
+                12px solid #8c5a35;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #a9d6df,
+                    #f0d8a9
+                );
+
+        }
+
+
+        .rakhi-brother,
+        .rakhi-sister {
+
+            position: absolute;
+
+            bottom: 0;
+
+            width: 170px;
+
+            height: 430px;
+
+        }
+
+
+        .rakhi-brother {
+
+            left: 8%;
+
+        }
+
+
+        .rakhi-sister {
+
+            right: 8%;
+
+        }
+
+
+        .adult-head {
+
+            position: absolute;
+
+            width: 90px;
+
+            height: 90px;
+
+            border-radius: 50%;
+
+            background: #cf906c;
+
+            left: 40px;
+
+            top: 0;
+
+        }
+
+
+        .adult-body {
+
+            position: absolute;
+
+            width: 150px;
+
+            height: 280px;
+
+            top: 80px;
+
+            border-radius:
+                45px 45px 0 0;
+
+            background:
+                #58758e;
+
+        }
+
+
+        .rakhi-sister .adult-body {
+
+            background:
+                #a9506a;
+
+        }
+
+
+        .brother-arm {
+
+            position: absolute;
+
+            width: 170px;
+
+            height: 30px;
+
+            background: #cf906c;
+
+            top: 210px;
+
+            left: 90px;
+
+            border-radius: 20px;
+
+            transform:
+                rotate(-10deg);
+
+        }
+
+
+        .sister-arm {
+
+            position: absolute;
+
+            width: 170px;
+
+            height: 28px;
+
+            background: #cf906c;
+
+            top: 205px;
+
+            right: 70px;
+
+            border-radius: 20px;
+
+            transform:
+                rotate(12deg);
+
+        }
+
+
+        .mini-rakhi {
+
+            position: absolute;
+
+            width: 55px;
+
+            height: 55px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    #ffe9a7 0 20%,
+                    #b93451 21% 48%,
+                    #d6a84f 49% 70%,
+                    transparent 71%
+                );
+
+            left: 50%;
+
+            top: 275px;
+
+            transform:
+                translateX(-50%);
+
+            animation:
+                rakhiGlow 1.5s ease-in-out infinite alternate;
+
+        }
+
+
+        @keyframes rakhiGlow {
+
+            from {
+                filter:
+                    drop-shadow(
+                        0 0 4px
+                        rgba(255,200,90,0.4)
+                    );
+            }
+
+            to {
+                filter:
+                    drop-shadow(
+                        0 0 18px
+                        rgba(255,200,90,0.9)
+                    );
+            }
+
+        }
+
+
+        /* =================================================
+           FINAL CEREMONY
+        ================================================== */
+
+        .rakhi-ceremony {
+
+            min-height: 100vh;
+
+            padding:
+                120px 5vw;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            position: relative;
+
+            z-index: 5;
+
+        }
+
+
+        .ceremony-content {
+
+            max-width: 650px;
+
+            margin-bottom: 50px;
+
+        }
+
+
+        .ceremony-content h2 {
+
+            font-size:
+                clamp(3rem, 7vw, 6rem);
+
+            line-height: 0.95;
+
+            margin: 15px 0 25px;
+
+        }
+
+
+        .ceremony-content h2 span {
+
+            color: #bd7a39;
+
+        }
+
+
+        .ceremony-scene {
+
+            position: relative;
+
+            width: min(850px, 90vw);
+
+            height: 470px;
+
+            border-radius: 30px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #dce9e4,
+                    #f1d5b2 65%,
+                    #9caf70 66%
+                );
+
+            box-shadow:
+                0 30px 70px
+                rgba(60,30,15,0.18);
+
+        }
+
+
+        .ceremony-glow {
+
+            position: absolute;
+
+            width: 300px;
+            height: 300px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,220,150,0.35);
+
+            left: 50%;
+            top: 70px;
+
+            transform:
+                translateX(-50%);
+
+            filter:
+                blur(20px);
+
+        }
+
+
+        .ceremony-brother,
+        .ceremony-sister {
+
+            position: absolute;
+
+            bottom: 0;
+
+            width: 230px;
+
+            height: 390px;
+
+        }
+
+
+        .ceremony-brother {
+
+            left: 12%;
+
+        }
+
+
+        .ceremony-sister {
+
+            right: 12%;
+
+        }
+
+
+        .ceremony-head {
+
+            position: absolute;
+
+            width: 105px;
+
+            height: 105px;
+
+            border-radius: 50%;
+
+            background: #cf906c;
+
+            top: 0;
+
+            left: 62px;
+
+        }
+
+
+        .hair {
+
+            position: absolute;
+
+            width: 115px;
+
+            height: 45px;
+
+            border-radius:
+                60px 60px 15px 15px;
+
+            background: #34251f;
+
+            top: -8px;
+
+            left: -5px;
+
+        }
+
+
+        .long-hair {
+
+            position: absolute;
+
+            width: 125px;
+
+            height: 230px;
+
+            border-radius:
+                70px 70px 40px 40px;
+
+            background: #34251f;
+
+            top: -15px;
+
+            left: -10px;
+
+            z-index: -1;
+
+        }
+
+
+        .face {
+
+            position: absolute;
+
+            width: 100%;
+
+            height: 100%;
+
+            border-radius: 50%;
+
+        }
+
+
+        .kurta {
+
+            position: absolute;
+
+            width: 210px;
+
+            height: 280px;
+
+            top: 105px;
+
+            left: 10px;
+
+            background:
+                #62829c;
+
+            border-radius:
+                50px 50px 10px 10px;
+
+        }
+
+
+        .saree {
+
+            position: absolute;
+
+            width: 210px;
+
+            height: 280px;
+
+            top: 105px;
+
+            left: 10px;
+
+            background:
+                #b95772;
+
+            border-radius:
+                60px 60px 10px 10px;
+
+        }
+
+
+        .brother-hand {
+
+            position: absolute;
+
+            width: 190px;
+
+            height: 35px;
+
+            border-radius: 30px;
+
+            background: #cf906c;
+
+            left: 115px;
+
+            top: 230px;
+
+            transform:
+                rotate(-8deg);
+
+            z-index: 5;
+
+        }
+
+
+        .sister-hand {
+
+            position: absolute;
+
+            width: 190px;
+
+            height: 35px;
+
+            border-radius: 30px;
+
+            background: #cf906c;
+
+            right: 105px;
+
+            top: 225px;
+
+            transform:
+                rotate(10deg);
+
+            transform-origin:
+                right center;
+
+            z-index: 6;
+
+            animation:
+                tyingMotion 2.5s ease-in-out infinite;
+
+        }
+
+
+        @keyframes tyingMotion {
+
+            0%,100% {
+
+                transform:
+                    rotate(10deg)
+                    translateX(0);
+
+            }
+
+            50% {
+
+                transform:
+                    rotate(2deg)
+                    translateX(-25px);
+
+            }
+
+        }
+
+
+        .tying-rakhi {
+
+            position: absolute;
+
+            left: 50%;
+
+            top: 255px;
+
+            transform:
+                translateX(-50%);
+
+            z-index: 10;
+
+            animation:
+                tyingRakhi 2.5s ease-in-out infinite;
+
+        }
+
+
+        .tying-thread {
+
+            width: 125px;
+
+            height: 10px;
+
+            border-radius: 10px;
+
+            background:
+                #b93451;
+
+        }
+
+
+        .tying-center {
+
+            position: absolute;
+
+            width: 48px;
+
+            height: 48px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    #fff1a8 0 18%,
+                    #b93451 19% 45%,
+                    #d6a84f 46% 70%,
+                    #9a681f 71%
+                );
+
+            left: 50%;
+
+            top: -19px;
+
+            transform:
+                translateX(-50%);
+
+        }
+
+
+        @keyframes tyingRakhi {
+
+            0%,100% {
+
+                transform:
+                    translateX(-50%)
+                    scale(1);
+
+            }
+
+            50% {
+
+                transform:
+                    translateX(-50%)
+                    scale(1.08);
+
+            }
+
+        }
+
+
+        .ceremony-message {
+
+            margin-top: 45px;
+
+            font-size: 1.15rem;
+
+            line-height: 1.8;
+
+        }
+
+
+        .ceremony-message strong {
+
+            font-size: 1.5rem;
+
+            color: #a85f35;
+
+        }
+
+
+        /* =================================================
+           MOBILE
+        ================================================== */
+
+        @media (max-width: 850px) {
+
+            .letters-container {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+
+            .memory-page.active {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .memory-scene {
+
+                min-height: 430px;
+
+            }
+
+
+            .memory-writing {
+
+                padding: 45px 30px;
+
+            }
+
+
+            .ceremony-brother {
+
+                left: -5%;
+
+                transform:
+                    scale(0.72);
+
+                transform-origin:
+                    bottom left;
+
+            }
+
+
+            .ceremony-sister {
+
+                right: -5%;
+
+                transform:
+                    scale(0.72);
+
+                transform-origin:
+                    bottom right;
+
+            }
+
+        }
+
+
+        @media (max-width: 550px) {
+
+            .letters-section {
+
+                padding:
+                    90px 20px;
+
+            }
+
+
+            .letters-container {
+
+                grid-template-columns: 1fr;
+
+                max-width: 320px;
+
+            }
+
+
+            .envelope {
+
+                height: 230px;
+
+            }
+
+
+            .memory-overlay {
+
+                padding: 12px;
+
+            }
+
+
+            .memory-popup {
+
+                max-height: 94vh;
+
+                border-radius: 14px;
+
+            }
+
+
+            .memory-scene {
+
+                min-height: 350px;
+
+            }
+
+
+            .ceremony-scene {
+
+                height: 400px;
+
+            }
+
+
+            .ceremony-brother,
+            .ceremony-sister {
+
+                transform:
+                    scale(0.55);
+
+            }
+
+
+            .ceremony-brother {
+
+                left: -18%;
+
+            }
+
+
+            .ceremony-sister {
+
+                right: -18%;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     DECORATIVE BACKGROUND
+===================================================== -->
+
+<div class="bg-decoration decoration-1"></div>
+
+<div class="bg-decoration decoration-2"></div>
+
+
+<!-- =====================================================
+     THREE.JS RAKHI
+===================================================== -->
+
+<div id="three-container"></div>
+
+
+<!-- =====================================================
+     MAIN WEBSITE
+===================================================== -->
+
+<main>
+
+
+    <!-- =================================================
+         HERO
+    ================================================== -->
+
+    <section class="hero">
+
+        <div class="content">
+
+            <p class="eyebrow">
+                A celebration of an eternal bond
+            </p>
+
+            <h1>
+                Raksha
+                <span>Bandhan</span>
+            </h1>
+
+            <p class="subtitle">
+
+                Some bonds are not made by blood alone.
+                They are made by memories, laughter,
+                little fights and a lifetime of love.
+
+            </p>
+
+            <button id="startButton">
+                Begin the journey ✨
+            </button>
+
+        </div>
+
+
+        <div class="scroll">
+
+            <span>SCROLL</span>
+
+            <div class="scroll-line"></div>
+
+            <span>EXPLORE</span>
+
+        </div>
+
+
+        <div class="scroll-ring-hint">
+
+            <span>SCROLL</span>
+
+            <i>↕</i>
+
+            <span>WATCH THE RAKHI TURN</span>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         STORY
+    ================================================== -->
+
+    <section class="story">
+
+        <div class="story-content">
+
+            <p class="eyebrow">
+                OUR BOND
+            </p>
+
+            <h2>
+
+                A thread.
+                <br>
+
+                A promise.
+                <br>
+
+                <span>Forever.</span>
+
+            </h2>
+
+            <p>
+
+                Through every childhood fight,
+                every secret, every laugh and
+                every unforgettable moment,
+                some bonds only grow stronger.
+
+            </p>
+
+            <div class="small-note">
+                ✦ Some memories never grow old ✦
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         MEMORY SECTION
+    ================================================== -->
+
+    <section class="memory">
+
+        <div class="memory-content">
+
+            <div class="memory-card">
+
+                <span class="memory-number">
+                    01
+                </span>
+
+                <h3>
+                    Little moments.
+                </h3>
+
+                <p>
+
+                    From childhood mischief
+                    to growing up together,
+                    every little moment becomes
+                    a beautiful memory.
+
+                </p>
+
+            </div>
+
+
+            <div class="memory-card">
+
+                <span class="memory-number">
+                    02
+                </span>
+
+                <h3>
+                    Endless laughter.
+                </h3>
+
+                <p>
+
+                    The silly jokes,
+                    playful arguments
+                    and countless laughs
+                    that only siblings understand.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         ✉️ MEMORY LETTERS
+    ================================================== -->
+
+    <section class="letters-section">
+
+        <div class="letters-heading">
+
+            <p class="eyebrow">
+                LITTLE MEMORIES
+            </p>
+
+            <h2>
+                Open a
+                <br>
+                <span>memory.</span>
+            </h2>
+
+            <p>
+
+                Four little letters.
+                Four little memories.
+                Open them and travel back
+                to those beautiful days.
+
+            </p>
+
+        </div>
+
+
+        <div class="letters-container">
+
+
+            <!-- LETTER 1 -->
+
+            <button
+                class="memory-letter"
+                data-letter="letter1">
+
+                <div class="envelope">
+
+                    <div class="envelope-top"></div>
+
+                    <div class="letter-paper">
+
+                        <span class="letter-icon">
+                            ✦
+                        </span>
+
+                        <h3>
+                            When we were little
+                        </h3>
+
+                        <p>
+                            Open this memory
+                        </p>
+
+                    </div>
+
+                    <div class="envelope-front">
+
+                        <span>
+                            A little memory ❤️
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </button>
+
+
+            <!-- LETTER 2 -->
+
+            <button
+                class="memory-letter"
+                data-letter="letter2">
+
+                <div class="envelope">
+
+                    <div class="envelope-top"></div>
+
+                    <div class="letter-paper">
+
+                        <span class="letter-icon">
+                            🌿
+                        </span>
+
+                        <h3>
+                            The Jhula
+                        </h3>
+
+                        <p>
+                            Open this memory
+                        </p>
+
+                    </div>
+
+                    <div class="envelope-front">
+
+                        <span>
+                            A childhood song 🌿
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </button>
+
+
+            <!-- LETTER 3 -->
+
+            <button
+                class="memory-letter"
+                data-letter="letter3">
+
+                <div class="envelope">
+
+                    <div class="envelope-top"></div>
+
+                    <div class="letter-paper">
+
+                        <span class="letter-icon">
+                            ✨
+                        </span>
+
+                        <h3>
+                            Growing together
+                        </h3>
+
+                        <p>
+                            Open this memory
+                        </p>
+
+                    </div>
+
+                    <div class="envelope-front">
+
+                        <span>
+                            Through the years ✨
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </button>
+
+
+            <!-- LETTER 4 -->
+
+            <button
+                class="memory-letter"
+                data-letter="letter4">
+
+                <div class="envelope">
+
+                    <div class="envelope-top"></div>
+
+                    <div class="letter-paper">
+
+                        <span class="letter-icon">
+                            ❤️
+                        </span>
+
+                        <h3>
+                            Rakhi day
+                        </h3>
+
+                        <p>
+                            Open this memory
+                        </p>
+
+                    </div>
+
+                    <div class="envelope-front">
+
+                        <span>
+                            Our special day ❤️
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         MEMORY POPUP
+    ================================================== -->
+
+    <div
+        class="memory-overlay"
+        id="memoryOverlay">
+
+        <div class="memory-popup">
+
+            <button
+                class="memory-close"
+                id="memoryClose">
+
+                ×
+
+            </button>
+
+
+            <!-- =========================================
+                 MEMORY 1
+            ========================================== -->
+
+            <div
+                class="memory-page"
+                id="letter1">
+
+                <div class="memory-scene scene-playing">
+
+                    <div class="scene-sun"></div>
+
+                    <div class="tree">
+
+                        <div class="tree-trunk"></div>
+
+                        <div class="tree-leaves"></div>
+
+                    </div>
+
+
+                    <div class="child brother">
+
+                        <div class="child-head"></div>
+
+                        <div class="child-body"></div>
+
+                        <div class="child-leg leg-left"></div>
+
+                        <div class="child-leg leg-right"></div>
+
+                    </div>
+
+
+                    <div class="child sister">
+
+                        <div class="child-head"></div>
+
+                        <div class="child-body"></div>
+
+                        <div class="child-leg leg-left"></div>
+
+                        <div class="child-leg leg-right"></div>
+
+                    </div>
+
+
+                    <div class="memory-ball">
+                        ●
+                    </div>
+
+                </div>
+
+
+                <div class="memory-writing">
+
+                    <p class="eyebrow">
+                        MEMORY 01
+                    </p>
+
+                    <h2>
+                        When we were
+                        <span>little.</span>
+                    </h2>
+
+                    <p>
+
+                        Back when the biggest problems
+                        in the world were deciding what
+                        game to play and who got to go
+                        first.
+
+                    </p>
+
+                    <p>
+
+                        We didn't know those ordinary
+                        afternoons would one day become
+                        some of our most beautiful memories.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================================
+                 MEMORY 2 — JHULA
+            ========================================== -->
+
+            <div
+                class="memory-page"
+                id="letter2">
+
+                <div class="memory-scene scene-jhula">
+
+                    <div class="jhula-tree">
+
+                        <div class="jhula-trunk"></div>
+
+                        <div class="jhula-branch"></div>
+
+                    </div>
+
+
+                    <div class="jhula-rope rope-left"></div>
+
+                    <div class="jhula-rope rope-right"></div>
+
+
+                    <div class="jhula-seat"></div>
+
+
+                    <div class="child jhula-sister">
+
+                        <div class="child-head"></div>
+
+                        <div class="child-body"></div>
+
+                        <div class="child-leg leg-left"></div>
+
+                        <div class="child-leg leg-right"></div>
+
+                    </div>
+
+
+                    <div class="child jhula-brother">
+
+                        <div class="child-head"></div>
+
+                        <div class="child-body"></div>
+
+                        <div class="child-leg leg-left"></div>
+
+                        <div class="child-leg leg-right"></div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="memory-writing jhula-writing">
+
+                    <p class="eyebrow">
+                        MEMORY 02
+                    </p>
+
+                    <h2>
+
+                        The sound of
+                        <span>childhood.</span>
+
+                    </h2>
+
+
+                    <!-- 🎵 YOUR SONG -->
+
+                    <div class="song-card">
+
+                        <span class="music-note">
+                            ♪
+                        </span>
+
+                        <p>
+                            kon halave limbdi ne
+                            kon jhulave pipdi.........
+                        </p>
+
+                        <span class="music-note">
+                            ♪
+                        </span>
+
+                    </div>
+
+
+                    <p>
+
+                        One would sit on the jhula,
+                        and the other would push it
+                        higher and higher.
+
+                    </p>
+
+
+                    <p class="soft-note">
+
+                        Those little moments felt
+                        ordinary then.
+                        Now they feel priceless.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================================
+                 MEMORY 3
+            ========================================== -->
+
+            <div
+                class="memory-page"
+                id="letter3">
+
+                <div class="memory-scene scene-growing">
+
+                    <div class="memory-sky"></div>
+
+                    <div class="memory-ground"></div>
+
+
+                    <div class="growing-brother">
+
+                        <div class="growing-head"></div>
+
+                        <div class="growing-body"></div>
+
+                    </div>
+
+
+                    <div class="growing-sister">
+
+                        <div class="growing-head"></div>
+
+                        <div class="growing-body"></div>
+
+                    </div>
+
+
+                    <div class="heart-path">
+
+                        <span>♡</span>
+
+                        <span>♡</span>
+
+                        <span>♡</span>
+
+                        <span>♡</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="memory-writing">
+
+                    <p class="eyebrow">
+                        MEMORY 03
+                    </p>
+
+                    <h2>
+
+                        Then we
+                        <span>grew up.</span>
+
+                    </h2>
+
+                    <p>
+
+                        The games changed.
+                        The conversations became longer.
+                        Life became busier.
+
+                    </p>
+
+                    <p>
+
+                        But somewhere between all
+                        those changes, the bond stayed
+                        exactly where it belonged.
+
+                    </p>
+
+                    <div class="quote-line">
+
+                        “Some bonds grow stronger
+                        with time.”
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================================
+                 MEMORY 4
+            ========================================== -->
+
+            <div
+                class="memory-page"
+                id="letter4">
+
+                <div class="memory-scene scene-rakhi">
+
+                    <div class="rakhi-window"></div>
+
+
+                    <div class="rakhi-brother">
+
+                        <div class="adult-head">
+
+                            <div class="face"></div>
+
+                        </div>
+
+                        <div class="adult-body"></div>
+
+                        <div class="brother-arm"></div>
+
+                    </div>
+
+
+                    <div class="rakhi-sister">
+
+                        <div class="adult-head">
+
+                            <div class="face"></div>
+
+                        </div>
+
+                        <div class="adult-body"></div>
+
+                        <div class="sister-arm"></div>
+
+                    </div>
+
+
+                    <div class="mini-rakhi">
+
+                    </div>
+
+                </div>
+
+
+                <div class="memory-writing">
+
+                    <p class="eyebrow">
+                        MEMORY 04
+                    </p>
+
+                    <h2>
+
+                        A thread.
+                        <br>
+
+                        <span>A promise.</span>
+
+                    </h2>
+
+                    <p>
+
+                        Every Raksha Bandhan is a reminder
+                        of everything we have shared —
+                        every laugh, every argument,
+                        every memory.
+
+                    </p>
+
+                    <p>
+
+                        And somehow, one simple thread
+                        says everything words cannot.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         MESSAGE
+    ================================================== -->
+
+    <section class="message">
+
+        <div class="message-box">
+
+            <p class="eyebrow">
+                A LITTLE MESSAGE
+            </p>
+
+            <h2>
+
+                To someone
+                <br>
+
+                truly special ❤️
+
+            </h2>
+
+            <p>
+
+                Wherever life takes us,
+                there will always be a piece
+                of our childhood that belongs
+                to each other.
+
+            </p>
+
+            <div class="message-line"></div>
+
+            <p class="signature">
+
+                Always there. Always connected.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         FINAL
+    ================================================== -->
+
+    <section class="final">
+
+        <div>
+
+            <p class="eyebrow">
+                WITH LOVE
+            </p>
+
+            <h2>
+
+                Happy Raksha
+                <br>
+
+                <span>Bandhan ❤️</span>
+
+            </h2>
+
+            <p class="final-subtitle">
+
+                A bond tied with love,
+                strengthened by memories
+                and cherished forever.
+
+            </p>
+
+            <button id="wishButton">
+                Make a wish ✨
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         ❤️ FINAL RAKHI CEREMONY
+    ================================================== -->
+
+    <section class="rakhi-ceremony">
+
+        <div class="ceremony-content">
+
+            <p class="eyebrow">
+                THE MOMENT
+            </p>
+
+            <h2>
+
+                And finally...
+                <br>
+
+                <span>the rakhi.</span>
+
+            </h2>
+
+            <p>
+
+                After all the memories,
+                all the laughter and all
+                the little moments...
+
+            </p>
+
+        </div>
+
+
+        <div class="ceremony-scene">
+
+            <div class="ceremony-glow"></div>
+
+
+            <!-- BROTHER -->
+
+            <div class="ceremony-brother">
+
+                <div class="ceremony-head">
+
+                    <div class="hair"></div>
+
+                    <div class="face"></div>
+
+                </div>
+
+
+                <div class="kurta"></div>
+
+
+                <div class="brother-hand"></div>
+
+            </div>
+
+
+            <!-- SISTER -->
+
+            <div class="ceremony-sister">
+
+                <div class="ceremony-head">
+
+                    <div class="long-hair"></div>
+
+                    <div class="face"></div>
+
+                </div>
+
+
+                <div class="saree"></div>
+
+
+                <div class="sister-hand"></div>
+
+            </div>
+
+
+            <!-- RAKHI -->
+
+            <div class="tying-rakhi">
+
+                <div class="tying-thread"></div>
+
+                <div class="tying-center">
+
+                    <div class="tying-gem"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="ceremony-message">
+
+            <p>
+                A little thread.
+            </p>
+
+            <p>
+                A lifetime of memories.
+            </p>
+
+            <strong>
+                One beautiful bond. ❤️
+            </strong>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =====================================================
+     THREE.JS IMPORT MAP
+===================================================== -->
+
+<script type="importmap">
+
+{
+    "imports": {
+
+        "three":
+        "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js"
+
+    }
+}
+
+</script>
+
+
+<!-- =====================================================
+     GSAP
+===================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script type="module">
+
+
+import * as THREE from "three";
+
+
+/* ======================================================
+   THREE.JS SCENE
+====================================================== */
+
+const scene = new THREE.Scene();
+
+
+/* ======================================================
+   CAMERA
+====================================================== */
+
+const camera =
+    new THREE.PerspectiveCamera(
+        42,
+        window.innerWidth /
+        window.innerHeight,
+        0.1,
+        100
+    );
+
+
+camera.position.set(
+    0,
+    0,
+    7
+);
+
+
+/* ======================================================
+   RENDERER
+====================================================== */
+
+const renderer =
+    new THREE.WebGLRenderer({
+
+        antialias: true,
+
+        alpha: true
+
+    });
+
+
+renderer.setPixelRatio(
+    Math.min(
+        window.devicePixelRatio,
+        2
+    )
+);
+
+
+renderer.setSize(
+    window.innerWidth,
+    window.innerHeight
+);
+
+
+renderer.outputColorSpace =
+    THREE.SRGBColorSpace;
+
+
+renderer.domElement.style.position =
+    "fixed";
+
+renderer.domElement.style.inset =
+    "0";
+
+renderer.domElement.style.width =
+    "100%";
+
+renderer.domElement.style.height =
+    "100%";
+
+
+document
+    .getElementById("three-container")
+    .appendChild(
+        renderer.domElement
+    );
+
+
+/* ======================================================
+   LIGHTING
+====================================================== */
+
+const ambientLight =
+    new THREE.AmbientLight(
+        0xffffff,
+        2
+    );
+
+scene.add(
+    ambientLight
+);
+
+
+const goldLight =
+    new THREE.PointLight(
+        0xffd27a,
+        55,
+        30
+    );
+
+goldLight.position.set(
+    4,
+    4,
+    6
+);
+
+scene.add(
+    goldLight
+);
+
+
+const warmLight =
+    new THREE.PointLight(
+        0xff8fa8,
+        25,
+        25
+    );
+
+warmLight.position.set(
+    -4,
+    -3,
+    4
+);
+
+scene.add(
+    warmLight
+);
+
+
+const frontLight =
+    new THREE.PointLight(
+        0xffffff,
+        18,
+        20
+    );
+
+frontLight.position.set(
+    0,
+    0,
+    5
+);
+
+scene.add(
+    frontLight
+);
+
+
+/* ======================================================
+   RAKHI GROUP
+====================================================== */
+
+const rakhi =
+    new THREE.Group();
+
+
+/* ======================================================
+   MATERIALS
+====================================================== */
+
+const goldMaterial =
+    new THREE.MeshStandardMaterial({
+
+        color: 0xd6a84f,
+
+        metalness: 0.92,
+
+        roughness: 0.18
+
+    });
+
+
+const brightGoldMaterial =
+    new THREE.MeshStandardMaterial({
+
+        color: 0xf0c66c,
+
+        metalness: 0.95,
+
+        roughness: 0.13
+
+    });
+
+
+const darkGoldMaterial =
+    new THREE.MeshStandardMaterial({
+
+        color: 0x9a681f,
+
+        metalness: 0.88,
+
+        roughness: 0.22
+
+    });
+
+
+const redMaterial =
+    new THREE.MeshStandardMaterial({
+
+        color: 0xb93451,
+
+        metalness: 0.2,
+
+        roughness: 0.38
+
+    });
+
+
+const jewelMaterial =
+    new THREE.MeshStandardMaterial({
+
+        color: 0xffefb0,
+
+        emissive: 0xc08020,
+
+        emissiveIntensity: 1.1,
+
+        metalness: 0.55,
+
+        roughness: 0.1
+
+    });
+
+
+/* ======================================================
+   OUTER RING
+====================================================== */
+
+const outerRing =
+    new THREE.Mesh(
+
+        new THREE.TorusGeometry(
+            1.48,
+            0.13,
+            32,
+            120
+        ),
+
+        goldMaterial
+
+    );
+
+rakhi.add(
+    outerRing
+);
+
+
+/* ======================================================
+   DECORATIVE RING
+====================================================== */
+
+const decorativeRing =
+    new THREE.Mesh(
+
+        new THREE.TorusGeometry(
+            1.34,
+            0.045,
+            20,
+            100
+        ),
+
+        brightGoldMaterial
+
+    );
+
+decorativeRing.position.z =
+    0.04;
+
+rakhi.add(
+    decorativeRing
+);
+
+
+/* ======================================================
+   INNER RED RING
+====================================================== */
+
+const innerRing =
+    new THREE.Mesh(
+
+        new THREE.TorusGeometry(
+            1.18,
+            0.075,
+            24,
+            100
+        ),
+
+        redMaterial
+
+    );
+
+innerRing.position.z =
+    0.07;
+
+rakhi.add(
+    innerRing
+);
+
+
+/* ======================================================
+   CENTER
+====================================================== */
+
+const center =
+    new THREE.Mesh(
+
+        new THREE.CylinderGeometry(
+            0.70,
+            0.70,
+            0.20,
+            64
+        ),
+
+        goldMaterial
+
+    );
+
+center.rotation.x =
+    Math.PI / 2;
+
+rakhi.add(
+    center
+);
+
+
+const centerInner =
+    new THREE.Mesh(
+
+        new THREE.CylinderGeometry(
+            0.51,
+            0.51,
+            0.13,
+            48
+        ),
+
+        redMaterial
+
+    );
+
+centerInner.rotation.x =
+    Math.PI / 2;
+
+centerInner.position.z =
+    0.14;
+
+rakhi.add(
+    centerInner
+);
+
+
+/* ======================================================
+   GEM
+====================================================== */
+
+const jewel =
+    new THREE.Mesh(
+
+        new THREE.IcosahedronGeometry(
+            0.27,
+            2
+        ),
+
+        jewelMaterial
+
+    );
+
+jewel.position.z =
+    0.25;
+
+rakhi.add(
+    jewel
+);
+
+
+/* ======================================================
+   GEM HALO
+====================================================== */
+
+const gemHalo =
+    new THREE.Mesh(
+
+        new THREE.TorusGeometry(
+            0.37,
+            0.025,
+            12,
+            60
+        ),
+
+        brightGoldMaterial
+
+    );
+
+gemHalo.position.z =
+    0.22;
+
+rakhi.add(
+    gemHalo
+);
+
+
+/* ======================================================
+   GOLD BEADS
+====================================================== */
+
+for (
+    let i = 0;
+    i < 16;
+    i++
+) {
+
+    const angle =
+        (i / 16) *
+        Math.PI *
+        2;
+
+
+    const bead =
+        new THREE.Mesh(
+
+            new THREE.SphereGeometry(
+                0.085,
+                18,
+                18
+            ),
+
+            brightGoldMaterial
+
+        );
+
+
+    bead.position.set(
+
+        Math.cos(angle) * 1.49,
+
+        Math.sin(angle) * 1.49,
+
+        0.08
+
+    );
+
+
+    rakhi.add(
+        bead
+    );
+
+}
+
+
+/* ======================================================
+   SMALL RED BEADS
+====================================================== */
+
+for (
+    let i = 0;
+    i < 8;
+    i++
+) {
+
+    const angle =
+        (i / 8) *
+        Math.PI *
+        2;
+
+
+    const bead =
+        new THREE.Mesh(
+
+            new THREE.SphereGeometry(
+                0.058,
+                14,
+                14
+            ),
+
+            redMaterial
+
+        );
+
+
+    bead.position.set(
+
+        Math.cos(angle) * 1.17,
+
+        Math.sin(angle) * 1.17,
+
+        0.15
+
+    );
+
+
+    rakhi.add(
+        bead
+    );
+
+}
+
+
+/* ======================================================
+   DECORATIVE GOLD DOTS
+====================================================== */
+
+for (
+    let i = 0;
+    i < 12;
+    i++
+) {
+
+    const angle =
+        (i / 12) *
+        Math.PI *
+        2;
+
+
+    const dot =
+        new THREE.Mesh(
+
+            new THREE.SphereGeometry(
+                0.045,
+                12,
+                12
+            ),
+
+            darkGoldMaterial
+
+        );
+
+
+    dot.position.set(
+
+        Math.cos(angle) * 0.83,
+
+        Math.sin(angle) * 0.83,
+
+        0.16
+
+    );
+
+
+    rakhi.add(
+        dot
+    );
+
+}
+
+
+/* ======================================================
+   THREAD TAILS
+====================================================== */
+
+const threadGeometry =
+    new THREE.CylinderGeometry(
+        0.035,
+        0.035,
+        2.9,
+        16
+    );
+
+
+const threadLeft =
+    new THREE.Mesh(
+        threadGeometry,
+        redMaterial
+    );
+
+
+const threadRight =
+    new THREE.Mesh(
+        threadGeometry,
+        redMaterial
+    );
+
+
+threadLeft.rotation.z =
+    Math.PI / 2;
+
+threadRight.rotation.z =
+    Math.PI / 2;
+
+
+threadLeft.position.x =
+    -2.15;
+
+threadRight.position.x =
+    2.15;
+
+
+rakhi.add(
+    threadLeft,
+    threadRight
+);
+
+
+/* ======================================================
+   SMALL GOLD THREAD BEADS
+====================================================== */
+
+const beadGeometry =
+    new THREE.SphereGeometry(
+        0.07,
+        14,
+        14
+    );
+
+
+for (
+    let i = 0;
+    i < 6;
+    i++
+) {
+
+    const bead =
+        new THREE.Mesh(
+            beadGeometry,
+            brightGoldMaterial
+        );
+
+
+    bead.position.x =
+        -1.25 - i * 0.18;
+
+
+    bead.position.y =
+        Math.sin(i * 1.4) * 0.08;
+
+
+    bead.position.z =
+        0.04;
+
+
+    rakhi.add(
+        bead
+    );
+
+}
+
+
+for (
+    let i = 0;
+    i < 6;
+    i++
+) {
+
+    const bead =
+        new THREE.Mesh(
+            beadGeometry,
+            brightGoldMaterial
+        );
+
+
+    bead.position.x =
+        1.25 + i * 0.18;
+
+
+    bead.position.y =
+        Math.sin(i * 1.4) * 0.08;
+
+
+    bead.position.z =
+        0.04;
+
+
+    rakhi.add(
+        bead
+    );
+
+}
+
+
+/* ======================================================
+   RAKHI INITIAL POSITION
+====================================================== */
+
+rakhi.position.set(
+    2.15,
+    1.0,
+    0
+);
+
+
+rakhi.rotation.set(
+    0,
+    0,
+    0
+);
+
+
+rakhi.scale.setScalar(
+    0.82
+);
+
+
+scene.add(
+    rakhi
+);
+
+
+/* ======================================================
+   RAKHI FLOAT
+====================================================== */
+
+let floatTime = 0;
+
+
+function animate() {
+
+    requestAnimationFrame(
+        animate
+    );
+
+
+    floatTime += 0.01;
+
+
+    rakhi.position.z =
+        Math.sin(
+            floatTime
+        ) * 0.08;
+
+
+    jewel.position.z =
+        0.25 +
+        Math.sin(
+            floatTime * 1.5
+        ) * 0.025;
+
+
+    renderer.render(
+        scene,
+        camera
+    );
+
+}
+
+
+animate();
+
+
+/* ======================================================
+   RESPONSIVE RAKHI POSITION
+====================================================== */
+
+function setResponsivePosition() {
+
+    if (
+        window.innerWidth <= 700
+    ) {
+
+        rakhi.scale.setScalar(
+            0.52
+        );
+
+        rakhi.position.x =
+            0;
+
+        rakhi.position.y =
+            1.0;
+
+    }
+
+    else if (
+        window.innerWidth <= 1100
+    ) {
+
+        rakhi.scale.setScalar(
+            0.65
+        );
+
+        rakhi.position.x =
+            1.65;
+
+        rakhi.position.y =
+            0.8;
+
+    }
+
+    else {
+
+        rakhi.scale.setScalar(
+            0.82
+        );
+
+        rakhi.position.x =
+            2.15;
+
+        rakhi.position.y =
+            1.0;
+
+    }
+
+}
+
+
+setResponsivePosition();
+
+
+/* ======================================================
+   RESIZE
+====================================================== */
+
+window.addEventListener(
+    "resize",
+    () => {
+
+        camera.aspect =
+            window.innerWidth /
+            window.innerHeight;
+
+
+        camera.updateProjectionMatrix();
+
+
+        renderer.setSize(
+            window.innerWidth,
+            window.innerHeight
+        );
+
+
+        setResponsivePosition();
+
+
+        ScrollTrigger.refresh();
+
+    }
+);
+
+
+/* ======================================================
+   GSAP
+====================================================== */
+
+gsap.registerPlugin(
+    ScrollTrigger
+);
+
+
+/* ======================================================
+   HERO ENTRANCE
+====================================================== */
+
+gsap.from(
+    ".hero .eyebrow",
+    {
+
+        opacity: 0,
+
+        y: 30,
+
+        duration: 1
+
+    }
+);
+
+
+gsap.from(
+    ".hero h1",
+    {
+
+        opacity: 0,
+
+        y: 100,
+
+        duration: 1.5,
+
+        ease: "power4.out"
+
+    }
+);
+
+
+gsap.from(
+    ".hero .subtitle",
+    {
+
+        opacity: 0,
+
+        y: 30,
+
+        duration: 1,
+
+        delay: 0.35
+
+    }
+);
+
+
+gsap.from(
+    "#startButton",
+    {
+
+        opacity: 0,
+
+        y: 20,
+
+        duration: 1,
+
+        delay: 0.7
+
+    }
+);
+
+
+/* ======================================================
+   ⭐ RAKHI 2 × 360° X-AXIS ROTATION
+====================================================== */
+
+gsap.to(
+    rakhi.rotation,
+    {
+
+        x: Math.PI * 4,
+
+        ease: "none",
+
+        scrollTrigger: {
+
+            trigger: "main",
+
+            start: "top top",
+
+            end: "bottom bottom",
+
+            scrub: 1
+
+        }
+
+    }
+);
+
+
+/* ======================================================
+   RAKHI TRAVELS DOWN PAGE
+====================================================== */
+
+gsap.to(
+    rakhi.position,
+    {
+
+        x: -1.9,
+
+        y: -4.4,
+
+        ease: "none",
+
+        scrollTrigger: {
+
+            trigger: "main",
+
+            start: "top top",
+
+            end: "bottom bottom",
+
+            scrub: 1.3
+
+        }
+
+    }
+);
+
+
+/* ======================================================
+   STORY
+====================================================== */
+
+gsap.from(
+    ".story-content",
+    {
+
+        opacity: 0,
+
+        y: 100,
+
+        scrollTrigger: {
+
+            trigger: ".story",
+
+            start: "top 75%",
+
+            end: "top 30%",
+
+            scrub: 1
+
+        }
+
+    }
+);
+
+
+/* ======================================================
+   MEMORY CARDS
+====================================================== */
+
+gsap.from(
+    ".memory-card",
+    {
+
+        opacity: 0,
+
+        y: 80,
+
+        stagger: 0.2,
+
+        scrollTrigger: {
+
+            trigger: ".memory",
+
+            start: "top 75%",
+
+            end: "top 35%",
+
+            scrub: 1
+
+        }
+
+    }
+);
+
+
+/* ======================================================
+   LETTERS ENTRANCE
+====================================================== */
+
+gsap.from(
+    ".memory-letter",
+    {
+
+        opacity: 0,
+
+        y: 80,
+
+        stagger: 0.15,
+
+        scrollTrigger: {
+
+            trigger: ".letters-section",
+
+            start: "top 75%",
+
+            end: "top 35%",
+
+            scrub: 1
+
+        }
+
+    }
+);
+
+
+/* ======================================================
+   MESSAGE
+====================================================== */
+
+gsap.from(
+    ".message-box",
+    {
+
+        opacity: 0,
+
+        scale: 0.85,
+
+        y: 60,
+
+        scrollTrigger: {
+
+            trigger: ".message",
+
+            start: "top 75%",
+
+            end: "top 30%",
+
+            scrub: 1
+
+        }
+
+    }
+);
+
+
+/* ======================================================
+   FINAL
+====================================================== */
+
+gsap.from(
+    ".final > div",
+    {
+
+        opacity: 0,
+
+        y: 80,
+
+        scrollTrigger: {
+
+            trigger: ".final",
+
+            start: "top 75%",
+
+            end: "top 35%",
+
+            scrub: 1
+
+        }
+
+    }
+);
+
+
+/* ======================================================
+   FINAL CEREMONY ENTRANCE
+====================================================== */
+
+gsap.from(
+    ".ceremony-content",
+    {
+
+        opacity: 0,
+
+        y: 80,
+
+        scrollTrigger: {
+
+            trigger: ".rakhi-ceremony",
+
+            start: "top 75%",
+
+            end: "top 45%",
+
+            scrub: 1
+
+        }
+
+    }
+);
+
+
+gsap.from(
+    ".ceremony-scene",
+    {
+
+        opacity: 0,
+
+        scale: 0.85,
+
+        scrollTrigger: {
+
+            trigger: ".rakhi-ceremony",
+
+            start: "top 65%",
+
+            end: "top 30%",
+
+            scrub: 1
+
+        }
+
+    }
+);
+
+
+/* ======================================================
+   START BUTTON
+====================================================== */
+
+document
+    .getElementById(
+        "startButton"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            document
+                .querySelector(
+                    ".story"
+                )
+                .scrollIntoView({
+
+                    behavior:
+                        "smooth"
+
+                });
+
+        }
+    );
+
+
+/* ======================================================
+   WISH BUTTON
+====================================================== */
+
+document
+    .getElementById(
+        "wishButton"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            alert(
+                "May this beautiful bond stay forever. ❤️"
+            );
+
+        }
+    );
+
+
+/* ======================================================
+   ✉️ MEMORY LETTER SYSTEM
+====================================================== */
+
+const memoryOverlay =
+    document.getElementById(
+        "memoryOverlay"
+    );
+
+
+const memoryClose =
+    document.getElementById(
+        "memoryClose"
+    );
+
+
+const memoryLetters =
+    document.querySelectorAll(
+        ".memory-letter"
+    );
+
+
+const memoryPages =
+    document.querySelectorAll(
+        ".memory-page"
+    );
+
+
+/*
+    When a letter is clicked:
+    1. Open popup
+    2. Hide all memories
+    3. Show selected memory
+*/
+
+memoryLetters.forEach(
+    (letter) => {
+
+        letter.addEventListener(
+            "click",
+            () => {
+
+                const target =
+                    letter.dataset.letter;
+
+
+                memoryPages.forEach(
+                    (page) => {
+
+                        page.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                const selectedPage =
+                    document.getElementById(
+                        target
+                    );
+
+
+                if (selectedPage) {
+
+                    selectedPage.classList.add(
+                        "active"
+                    );
+
+                }
+
+
+                memoryOverlay.classList.add(
+                    "active"
+                );
+
+
+                document.body.style.overflow =
+                    "hidden";
+
+            }
+        );
+
+    }
+);
+
+
+/* ======================================================
+   CLOSE MEMORY
+====================================================== */
+
+function closeMemory() {
+
+    memoryOverlay.classList.remove(
+        "active"
+    );
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+memoryClose.addEventListener(
+    "click",
+    closeMemory
+);
+
+
+/* ======================================================
+   CLICK OUTSIDE POPUP
+====================================================== */
+
+memoryOverlay.addEventListener(
+    "click",
+    (event) => {
+
+        if (
+            event.target ===
+            memoryOverlay
+        ) {
+
+            closeMemory();
+
+        }
+
+    }
+);
+
+
+/* ======================================================
+   ESCAPE KEY
+====================================================== */
+
+document.addEventListener(
+    "keydown",
+    (event) => {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            closeMemory();
+
+        }
+
+    }
+);
+
+
+/* ======================================================
+   REFRESH SCROLLTRIGGER
+====================================================== */
+
+window.addEventListener(
+    "load",
+    () => {
+
+        ScrollTrigger.refresh();
+
+    }
+);
+
+
+</script>
+
+
+</body>
+
+</html>

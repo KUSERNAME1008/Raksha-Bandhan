@@ -1,0 +1,3038 @@
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+
+body {
+
+    background: #f8f1e9;
+
+    color: #59453b;
+
+    font-family: Georgia, serif;
+
+    overflow-x: hidden;
+
+}
+
+
+
+/* =====================================================
+   SECTIONS
+===================================================== */
+
+section {
+
+    min-height: 100vh;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+
+/* =====================================================
+   THREE.JS
+===================================================== */
+
+#three-container {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100vh;
+
+    z-index: 1;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+}
+
+
+#three-container canvas {
+
+    display: block;
+
+    width: 100% !important;
+
+    height: 100% !important;
+
+}
+
+
+
+/* =====================================================
+   BACKGROUND DECORATIONS
+===================================================== */
+
+.bg-decoration {
+
+    position: fixed;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: 0;
+
+    filter: blur(1px);
+
+}
+
+
+.decoration-1 {
+
+    width: 350px;
+
+    height: 350px;
+
+    top: -140px;
+
+    left: -120px;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(
+                216,
+                164,
+                79,
+                0.14
+            ),
+
+            transparent 70%
+
+        );
+
+}
+
+
+.decoration-2 {
+
+    width: 450px;
+
+    height: 450px;
+
+    right: -180px;
+
+    bottom: -180px;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(
+                185,
+                52,
+                81,
+                0.10
+            ),
+
+            transparent 70%
+
+        );
+
+}
+
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+
+    overflow: hidden;
+
+    justify-content: flex-start;
+
+    background:
+
+        radial-gradient(
+
+            circle at 80% 25%,
+
+            rgba(
+                218,
+                174,
+                91,
+                0.25
+            ),
+
+            transparent 27%
+
+        ),
+
+        radial-gradient(
+
+            circle at 10% 85%,
+
+            rgba(
+                220,
+                143,
+                165,
+                0.14
+            ),
+
+            transparent 30%
+
+        ),
+
+        linear-gradient(
+
+            135deg,
+
+            rgba(
+                255,
+                251,
+                246,
+                0.94
+            ),
+
+            rgba(
+                245,
+                232,
+                219,
+                0.90
+            )
+
+        );
+
+}
+
+
+.content {
+
+    position: relative;
+
+    z-index: 5;
+
+    width:
+        min(
+            1100px,
+            90%
+        );
+
+}
+
+
+
+/* =====================================================
+   EYEBROW
+===================================================== */
+
+.eyebrow {
+
+    color: #ae8138;
+
+    font-family: Arial, sans-serif;
+
+    letter-spacing: 5px;
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 25px;
+
+}
+
+
+
+/* =====================================================
+   TITLE
+===================================================== */
+
+h1 {
+
+    font-size:
+
+        clamp(
+
+            70px,
+
+            13vw,
+
+            190px
+
+        );
+
+    line-height: 0.78;
+
+    letter-spacing: -9px;
+
+    color: #5c463c;
+
+}
+
+
+h1 span,
+h2 span {
+
+    color: #b93451;
+
+    font-style: italic;
+
+}
+
+
+
+/* =====================================================
+   SUBTITLE
+===================================================== */
+
+.subtitle {
+
+    margin-top: 45px;
+
+    max-width: 430px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 18px;
+
+    line-height: 1.6;
+
+    color: #806e63;
+
+}
+
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+button {
+
+    margin-top: 35px;
+
+    padding:
+
+        16px 28px;
+
+    border-radius: 100px;
+
+    border:
+
+        1px solid
+
+        rgba(
+            185,
+            52,
+            81,
+            0.18
+        );
+
+    background:
+
+        rgba(
+            255,
+            255,
+            255,
+            0.55
+        );
+
+    color: #694d43;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(15px);
+
+    transition:
+
+        transform 0.3s,
+
+        background 0.3s,
+
+        box-shadow 0.3s;
+
+}
+
+
+button:hover {
+
+    background: #b93451;
+
+    color: white;
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+
+        0 15px 35px
+
+        rgba(
+            185,
+            52,
+            81,
+            0.20
+        );
+
+}
+
+
+
+/* =====================================================
+   SCROLL INDICATOR
+===================================================== */
+
+.scroll {
+
+    position: absolute;
+
+    bottom: 28px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    z-index: 5;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    color: #9a887e;
+
+    letter-spacing: 3px;
+
+}
+
+
+.scroll-line {
+
+    width: 35px;
+
+    height: 1px;
+
+    background:
+        #c49a55;
+
+}
+
+
+
+/* =====================================================
+   RAKHI HINT
+===================================================== */
+
+.scroll-ring-hint {
+
+    position: absolute;
+
+    right: 6vw;
+
+    bottom: 28px;
+
+    z-index: 5;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding:
+
+        9px 14px;
+
+    border:
+
+        1px solid
+
+        rgba(
+            185,
+            52,
+            81,
+            0.14
+        );
+
+    border-radius: 999px;
+
+    background:
+
+        rgba(
+            255,
+            250,
+            242,
+            0.65
+        );
+
+    backdrop-filter:
+        blur(12px);
+
+    color: #9a8174;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+}
+
+
+.scroll-ring-hint i {
+
+    font-style: normal;
+
+    color: #c9973e;
+
+    font-size: 15px;
+
+}
+
+
+
+/* =====================================================
+   STORY
+===================================================== */
+
+.story {
+
+    background:
+
+        radial-gradient(
+
+            circle at 75% 30%,
+
+            rgba(
+                218,
+                174,
+                91,
+                0.20
+            ),
+
+            transparent 30%
+
+        ),
+
+        radial-gradient(
+
+            circle at 10% 80%,
+
+            rgba(
+                185,
+                52,
+                81,
+                0.08
+            ),
+
+            transparent 25%
+
+        ),
+
+        linear-gradient(
+
+            180deg,
+
+            rgba(
+                246,
+                235,
+                222,
+                0.94
+            ),
+
+            rgba(
+                237,
+                222,
+                208,
+                0.94
+            )
+
+        );
+
+}
+
+
+.story-content {
+
+    position: relative;
+
+    z-index: 5;
+
+    width:
+        min(
+            850px,
+            85%
+        );
+
+}
+
+
+h2 {
+
+    font-size:
+
+        clamp(
+
+            55px,
+
+            8vw,
+
+            110px
+
+        );
+
+    line-height: 0.88;
+
+    letter-spacing: -5px;
+
+    color: #5c463c;
+
+}
+
+
+.story-content > p,
+.message-box > p {
+
+    margin-top: 35px;
+
+    max-width: 520px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 18px;
+
+    line-height: 1.7;
+
+    color: #806e63;
+
+}
+
+
+.small-note {
+
+    margin-top: 30px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    color: #b58a4b;
+
+}
+
+
+
+/* =====================================================
+   MEMORY
+===================================================== */
+
+.memory {
+
+    min-height: 100vh;
+
+    background:
+
+        radial-gradient(
+
+            circle at center,
+
+            rgba(
+                218,
+                174,
+                91,
+                0.12
+            ),
+
+            transparent 35%
+
+        ),
+
+        linear-gradient(
+
+            135deg,
+
+            rgba(
+                250,
+                241,
+                233,
+                0.95
+            ),
+
+            rgba(
+                239,
+                225,
+                215,
+                0.94
+            )
+
+        );
+
+}
+
+
+.memory-content {
+
+    position: relative;
+
+    z-index: 5;
+
+    width:
+        min(
+            1050px,
+            88%
+        );
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            1fr
+        );
+
+    gap: 35px;
+
+}
+
+
+.memory-card {
+
+    padding: 45px;
+
+    min-height: 300px;
+
+    border:
+
+        1px solid
+
+        rgba(
+            174,
+            129,
+            56,
+            0.18
+        );
+
+    border-radius: 30px;
+
+    background:
+
+        rgba(
+            255,
+            252,
+            248,
+            0.48
+        );
+
+    backdrop-filter:
+        blur(15px);
+
+    box-shadow:
+
+        0 25px 60px
+
+        rgba(
+            111,
+            72,
+            52,
+            0.07
+        );
+
+}
+
+
+.memory-number {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    color: #b58a4b;
+
+}
+
+
+.memory-card h3 {
+
+    margin-top: 45px;
+
+    font-size: 45px;
+
+    font-weight: normal;
+
+    color: #654b40;
+
+}
+
+
+.memory-card p {
+
+    margin-top: 20px;
+
+    max-width: 420px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+
+    color: #806e63;
+
+}
+
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+.message {
+
+    background:
+
+        radial-gradient(
+
+            circle at 25% 25%,
+
+            rgba(
+                220,
+                143,
+                165,
+                0.16
+            ),
+
+            transparent 30%
+
+        ),
+
+        radial-gradient(
+
+            circle at 75% 75%,
+
+            rgba(
+                218,
+                174,
+                91,
+                0.18
+            ),
+
+            transparent 30%
+
+        ),
+
+        linear-gradient(
+
+            135deg,
+
+            rgba(
+                247,
+                235,
+                228,
+                0.95
+            ),
+
+            rgba(
+                233,
+                220,
+                211,
+                0.95
+            )
+
+        );
+
+}
+
+
+.message-box {
+
+    position: relative;
+
+    z-index: 5;
+
+    width:
+        min(
+            800px,
+            85%
+        );
+
+}
+
+
+.message-line {
+
+    margin-top: 35px;
+
+    width: 100px;
+
+    height: 1px;
+
+    background:
+        #c59a55;
+
+}
+
+
+.signature {
+
+    margin-top: 20px !important;
+
+    font-size: 13px !important;
+
+    letter-spacing: 1px;
+
+    color: #a18474 !important;
+
+}
+
+
+
+/* =====================================================
+   FINAL
+===================================================== */
+
+.final {
+
+    text-align: center;
+
+    background:
+
+        radial-gradient(
+
+            circle at center,
+
+            rgba(
+                218,
+                174,
+                91,
+                0.25
+            ),
+
+            transparent 34%
+
+        ),
+
+        radial-gradient(
+
+            circle at 80% 20%,
+
+            rgba(
+                185,
+                52,
+                81,
+                0.10
+            ),
+
+            transparent 25%
+
+        ),
+
+        linear-gradient(
+
+            135deg,
+
+            rgba(
+                255,
+                250,
+                243,
+                0.96
+            ),
+
+            rgba(
+                240,
+                224,
+                211,
+                0.96
+            )
+
+        );
+
+}
+
+
+.final > div {
+
+    position: relative;
+
+    z-index: 5;
+
+}
+
+
+.final h2 {
+
+    font-size:
+
+        clamp(
+
+            55px,
+
+            9vw,
+
+            120px
+
+        );
+
+}
+
+
+.final-subtitle {
+
+    margin: 30px auto 0;
+
+    max-width: 480px;
+
+    font-family: Arial, sans-serif;
+
+    line-height: 1.7;
+
+    color: #806e63;
+
+}
+
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+
+
+    h1 {
+
+        font-size:
+            clamp(
+                60px,
+                17vw,
+                100px
+            );
+
+        letter-spacing: -5px;
+
+    }
+
+
+    h2 {
+
+        letter-spacing: -3px;
+
+    }
+
+
+    .subtitle {
+
+        font-size: 16px;
+
+        max-width: 330px;
+
+    }
+
+
+    .eyebrow {
+
+        letter-spacing: 3px;
+
+    }
+
+
+    .content {
+
+        width: 86%;
+
+    }
+
+
+    .scroll-ring-hint {
+
+        right: 50%;
+
+        transform:
+            translateX(50%);
+
+        bottom: 18px;
+
+        font-size: 7px;
+
+        letter-spacing: 1.4px;
+
+    }
+
+
+    .memory-content {
+
+        grid-template-columns:
+            1fr;
+
+        width: 86%;
+
+    }
+
+
+    .memory-card {
+
+        padding: 30px;
+
+        min-height: 250px;
+
+    }
+
+
+    .memory-card h3 {
+
+        margin-top: 30px;
+
+        font-size: 35px;
+
+    }
+
+
+    .story-content,
+    .message-box {
+
+        width: 86%;
+
+    }
+
+
+}
+
+
+
+/* =====================================================
+   SMALL PHONES
+===================================================== */
+
+@media (max-width: 430px) {
+
+
+    h1 {
+
+        font-size: 62px;
+
+    }
+
+
+    h2 {
+
+        font-size: 53px;
+
+    }
+
+
+    .scroll {
+
+        display: none;
+
+    }
+
+
+    .scroll-ring-hint {
+
+        bottom: 15px;
+
+    }
+
+
+}
+/* =====================================================
+   MEMORY LETTERS SECTION
+===================================================== */
+
+.letters-section {
+
+    min-height: 100vh;
+
+    padding: 120px 7vw;
+
+    display: block;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(220,143,165,0.15),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 70%,
+            rgba(218,174,91,0.18),
+            transparent 30%
+        ),
+        #f3e7da;
+
+}
+
+
+.letters-heading {
+
+    width: min(750px, 90%);
+
+    margin: 0 auto 70px;
+
+}
+
+
+.letters-heading h2 {
+
+    margin-bottom: 30px;
+
+}
+
+
+.letters-heading > p:last-child {
+
+    max-width: 520px;
+
+    font-family: Arial, sans-serif;
+
+    color: #806e63;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+
+}
+
+
+/* =====================================================
+   LETTER GRID
+===================================================== */
+
+.letters-container {
+
+    width: min(1100px, 95%);
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 25px;
+
+}
+
+
+.memory-letter {
+
+    border: none;
+
+    background: transparent;
+
+    padding: 0;
+
+    margin: 0;
+
+    cursor: pointer;
+
+}
+
+
+.envelope {
+
+    position: relative;
+
+    height: 260px;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fff8ec,
+            #ead6bd
+        );
+
+    box-shadow:
+        0 20px 45px
+        rgba(90,50,30,0.12);
+
+    transition:
+        transform 0.5s cubic-bezier(.2,.8,.2,1),
+        box-shadow 0.5s;
+
+}
+
+
+.memory-letter:hover .envelope {
+
+    transform:
+        translateY(-12px)
+        rotate(-1deg);
+
+    box-shadow:
+        0 30px 60px
+        rgba(90,50,30,0.2);
+
+}
+
+
+.envelope-top {
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 130px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #c99662,
+            #e3c092
+        );
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            50% 100%
+        );
+
+    z-index: 3;
+
+    transform-origin: top;
+
+}
+
+
+.letter-paper {
+
+    position: absolute;
+
+    left: 12%;
+
+    top: 30px;
+
+    width: 76%;
+
+    height: 190px;
+
+    padding: 30px 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fffaf0,
+            #f7e9d3
+        );
+
+    border-radius: 5px;
+
+    box-shadow:
+        0 8px 20px
+        rgba(80,40,20,0.1);
+
+    z-index: 2;
+
+}
+
+
+.letter-icon {
+
+    display: block;
+
+    color: #b93451;
+
+    font-size: 25px;
+
+    margin-bottom: 12px;
+
+}
+
+
+.letter-paper h3 {
+
+    font-family: Georgia, serif;
+
+    font-size: 23px;
+
+    font-weight: normal;
+
+    color: #59453b;
+
+}
+
+
+.letter-paper p {
+
+    margin-top: 12px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+
+    color: #9a8174;
+
+}
+
+
+.envelope-front {
+
+    position: absolute;
+
+    bottom: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 110px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #b93451,
+            #8e2940
+        );
+
+    clip-path:
+        polygon(
+            0 0,
+            50% 60%,
+            100% 0,
+            100% 100%,
+            0 100%
+        );
+
+    z-index: 4;
+
+}
+
+
+.envelope-front span {
+
+    position: absolute;
+
+    bottom: 18px;
+
+    left: 0;
+
+    right: 0;
+
+    text-align: center;
+
+    color: #fff4e8;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+}
+
+
+/* =====================================================
+   MEMORY OVERLAY
+===================================================== */
+
+.memory-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 30px;
+
+    background:
+        rgba(40,20,15,0.72);
+
+    backdrop-filter:
+        blur(14px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity 0.4s,
+        visibility 0.4s;
+
+}
+
+
+.memory-overlay.active {
+
+    opacity: 1;
+
+    visibility: visible;
+
+}
+
+
+.memory-popup {
+
+    position: relative;
+
+    width: min(1050px, 94vw);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff9ef,
+            #f0dfc9
+        );
+
+    box-shadow:
+        0 40px 100px
+        rgba(0,0,0,0.35);
+
+    transform:
+        translateY(40px)
+        scale(.95);
+
+    transition:
+        transform .5s cubic-bezier(.2,.8,.2,1);
+
+}
+
+
+.memory-overlay.active .memory-popup {
+
+    transform:
+        translateY(0)
+        scale(1);
+
+}
+
+
+.memory-close {
+
+    position: sticky;
+
+    float: right;
+
+    top: 20px;
+
+    right: 20px;
+
+    z-index: 20;
+
+    width: 45px;
+
+    height: 45px;
+
+    margin: 20px;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #b93451;
+
+    color: white;
+
+    font-size: 28px;
+
+    line-height: 45px;
+
+}
+
+
+.memory-page {
+
+    min-height: 650px;
+
+    padding: 60px;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 50px;
+
+    align-items: center;
+
+}
+
+
+.memory-page:not(.active) {
+
+    display: none;
+
+}
+
+
+.memory-writing {
+
+    padding: 30px;
+
+}
+
+
+.memory-writing h2 {
+
+    font-size:
+        clamp(45px, 5vw, 75px);
+
+    margin-bottom: 30px;
+
+}
+
+
+.memory-writing p:not(.eyebrow) {
+
+    max-width: 450px;
+
+    margin-top: 20px;
+
+    font-family: Arial, sans-serif;
+
+    color: #806e63;
+
+    font-size: 17px;
+
+    line-height: 1.8;
+
+}
+
+
+.soft-note {
+
+    font-style: italic;
+
+}
+
+
+.quote-line {
+
+    margin-top: 35px;
+
+    padding-left: 20px;
+
+    border-left:
+        2px solid #b93451;
+
+    color: #b93451;
+
+    font-family: Georgia, serif;
+
+    font-style: italic;
+
+    font-size: 19px;
+
+}
+
+
+/* =====================================================
+   MEMORY SCENES
+===================================================== */
+
+.memory-scene {
+
+    position: relative;
+
+    min-height: 520px;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f7dfbb,
+            #e7c39d
+        );
+
+}
+
+
+.scene-sun {
+
+    position: absolute;
+
+    width: 90px;
+
+    height: 90px;
+
+    border-radius: 50%;
+
+    background: #f2c76c;
+
+    top: 55px;
+
+    right: 70px;
+
+    box-shadow:
+        0 0 50px
+        rgba(242,199,108,.6);
+
+}
+
+
+.tree {
+
+    position: absolute;
+
+    left: 50px;
+
+    bottom: 0;
+
+    width: 210px;
+
+    height: 430px;
+
+}
+
+
+.tree-trunk {
+
+    position: absolute;
+
+    bottom: 0;
+
+    left: 80px;
+
+    width: 60px;
+
+    height: 300px;
+
+    border-radius: 40px;
+
+    background: #80543a;
+
+}
+
+
+.tree-leaves {
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    width: 210px;
+
+    height: 210px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 30% 30%,
+            #7c9a55,
+            #405d35
+        );
+
+    box-shadow:
+        40px 30px 0 #526f3e,
+        70px 80px 0 #637e48;
+
+}
+
+
+/* =====================================================
+   SIMPLE CHILD CHARACTERS
+===================================================== */
+
+.child {
+
+    position: absolute;
+
+    width: 70px;
+
+    height: 150px;
+
+}
+
+
+.child-head {
+
+    position: absolute;
+
+    width: 55px;
+
+    height: 55px;
+
+    left: 8px;
+
+    top: 0;
+
+    border-radius: 50%;
+
+    background: #b97955;
+
+    box-shadow:
+        inset 10px 0 0 rgba(80,40,25,.15);
+
+}
+
+
+.child-body {
+
+    position: absolute;
+
+    top: 52px;
+
+    left: 10px;
+
+    width: 50px;
+
+    height: 70px;
+
+    border-radius: 20px 20px 8px 8px;
+
+    background: #bd4b57;
+
+}
+
+
+.child-leg {
+
+    position: absolute;
+
+    width: 18px;
+
+    height: 55px;
+
+    top: 110px;
+
+    background: #5b4b49;
+
+    border-radius: 20px;
+
+}
+
+
+.leg-left {
+
+    left: 12px;
+
+    transform: rotate(8deg);
+
+}
+
+
+.leg-right {
+
+    right: 12px;
+
+    transform: rotate(-8deg);
+
+}
+
+
+.brother {
+
+    left: 290px;
+
+    bottom: 70px;
+
+}
+
+
+.brother .child-body {
+
+    background: #4f7890;
+
+}
+
+
+.sister {
+
+    left: 390px;
+
+    bottom: 70px;
+
+}
+
+
+.sister .child-body {
+
+    background: #c45c70;
+
+}
+
+
+.memory-ball {
+
+    position: absolute;
+
+    left: 365px;
+
+    bottom: 75px;
+
+    color: #b93451;
+
+    font-size: 40px;
+
+}
+
+
+/* =====================================================
+   JHULA SCENE
+===================================================== */
+
+.scene-jhula {
+
+    background:
+        linear-gradient(
+            180deg,
+            #b9d7d2,
+            #e9d1ad
+        );
+
+}
+
+
+.jhula-tree {
+
+    position: absolute;
+
+    inset: 0;
+
+}
+
+
+.jhula-trunk {
+
+    position: absolute;
+
+    left: 60px;
+
+    bottom: 0;
+
+    width: 75px;
+
+    height: 430px;
+
+    background: #704936;
+
+    border-radius: 50px;
+
+}
+
+
+.jhula-branch {
+
+    position: absolute;
+
+    left: 60px;
+
+    top: 80px;
+
+    width: 390px;
+
+    height: 45px;
+
+    border-radius: 40px;
+
+    background: #704936;
+
+    transform: rotate(-3deg);
+
+}
+
+
+.jhula-rope {
+
+    position: absolute;
+
+    top: 105px;
+
+    width: 5px;
+
+    height: 270px;
+
+    background: #76543e;
+
+}
+
+
+.rope-left {
+
+    left: 245px;
+
+}
+
+
+.rope-right {
+
+    left: 390px;
+
+}
+
+
+.jhula-seat {
+
+    position: absolute;
+
+    left: 220px;
+
+    top: 365px;
+
+    width: 200px;
+
+    height: 22px;
+
+    border-radius: 10px;
+
+    background: #9c623f;
+
+}
+
+
+.jhula-sister {
+
+    left: 275px;
+
+    bottom: 65px;
+
+}
+
+
+.jhula-brother {
+
+    left: 425px;
+
+    bottom: 55px;
+
+    transform: scale(.85);
+
+}
+
+
+.jhula-brother .child-body {
+
+    background: #527b91;
+
+}
+
+
+/* =====================================================
+   SONG CARD
+===================================================== */
+
+.song-card {
+
+    margin-top: 30px;
+
+    padding: 25px;
+
+    border-radius: 14px;
+
+    background:
+        rgba(185,52,81,.08);
+
+    border:
+        1px solid
+        rgba(185,52,81,.15);
+
+    text-align: center;
+
+}
+
+
+.song-card p {
+
+    margin: 0 !important;
+
+    color: #59453b !important;
+
+    font-family: Georgia, serif !important;
+
+    font-style: italic;
+
+    font-size: 22px !important;
+
+}
+
+
+.music-note {
+
+    color: #b93451;
+
+    font-size: 25px;
+
+}
+
+
+/* =====================================================
+   GROWING SCENE
+===================================================== */
+
+.scene-growing {
+
+    background:
+        linear-gradient(
+            180deg,
+            #e9d7bf,
+            #d7b78e
+        );
+
+}
+
+
+.memory-sky {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 70% 20%,
+            #f2ca77,
+            transparent 18%
+        );
+
+}
+
+
+.memory-ground {
+
+    position: absolute;
+
+    bottom: 0;
+
+    width: 100%;
+
+    height: 35%;
+
+    background: #a77c58;
+
+}
+
+
+.growing-brother,
+.growing-sister {
+
+    position: absolute;
+
+    bottom: 130px;
+
+    width: 110px;
+
+    height: 260px;
+
+}
+
+
+.growing-brother {
+
+    left: 190px;
+
+}
+
+
+.growing-sister {
+
+    left: 350px;
+
+}
+
+
+.growing-head {
+
+    width: 85px;
+
+    height: 85px;
+
+    border-radius: 50%;
+
+    background: #b97955;
+
+}
+
+
+.growing-body {
+
+    width: 90px;
+
+    height: 150px;
+
+    margin-top: -5px;
+
+    border-radius: 30px;
+
+    background: #567f8e;
+
+}
+
+
+.growing-sister .growing-body {
+
+    background: #b94e68;
+
+}
+
+
+.heart-path {
+
+    position: absolute;
+
+    left: 270px;
+
+    top: 100px;
+
+    display: flex;
+
+    gap: 25px;
+
+    color: #b93451;
+
+    font-size: 24px;
+
+}
+
+
+/* =====================================================
+   RAKHI MEMORY SCENE
+===================================================== */
+
+.scene-rakhi {
+
+    background:
+        radial-gradient(
+            circle at center,
+            #f4d99e,
+            #bd8065
+        );
+
+}
+
+
+.rakhi-window {
+
+    position: absolute;
+
+    inset: 45px;
+
+    border:
+        3px solid
+        rgba(255,255,255,.35);
+
+    border-radius: 50%;
+
+}
+
+
+.rakhi-brother,
+.rakhi-sister {
+
+    position: absolute;
+
+    bottom: 50px;
+
+}
+
+
+.rakhi-brother {
+
+    left: 100px;
+
+}
+
+
+.rakhi-sister {
+
+    right: 90px;
+
+}
+
+
+.adult-head {
+
+    width: 95px;
+
+    height: 95px;
+
+    border-radius: 50%;
+
+    background: #b97955;
+
+}
+
+
+.adult-body {
+
+    width: 120px;
+
+    height: 190px;
+
+    margin-top: -5px;
+
+    border-radius: 35px 35px 10px 10px;
+
+    background: #50788c;
+
+}
+
+
+.rakhi-sister .adult-body {
+
+    background: #b64d67;
+
+}
+
+
+.brother-arm,
+.sister-arm {
+
+    position: absolute;
+
+    width: 160px;
+
+    height: 28px;
+
+    border-radius: 30px;
+
+    background: #b97955;
+
+}
+
+
+.brother-arm {
+
+    right: -120px;
+
+    top: 180px;
+
+    transform: rotate(-5deg);
+
+}
+
+
+.sister-arm {
+
+    left: -100px;
+
+    top: 180px;
+
+    transform: rotate(5deg);
+
+}
+
+
+.mini-rakhi {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 62%;
+
+    transform:
+        translate(-50%, -50%);
+
+}
+
+
+.mini-rakhi-center {
+
+    width: 45px;
+
+    height: 45px;
+
+    border-radius: 50%;
+
+    border:
+        7px solid #d6a84f;
+
+    background: #b93451;
+
+    box-shadow:
+        0 0 20px
+        rgba(255,210,122,.7);
+
+}
+
+
+.mini-rakhi-thread {
+
+    position: absolute;
+
+    width: 230px;
+
+    height: 8px;
+
+    top: 19px;
+
+    left: -95px;
+
+    background: #b93451;
+
+    z-index: -1;
+
+}
+
+
+/* =====================================================
+   FINAL RAKHI CEREMONY
+===================================================== */
+
+.rakhi-ceremony {
+
+    min-height: 100vh;
+
+    padding: 120px 7vw 100px;
+
+    display: block;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(218,174,91,.25),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #fffaf3,
+            #ead9c7
+        );
+
+}
+
+
+.ceremony-content {
+
+    max-width: 700px;
+
+    margin: auto;
+
+}
+
+
+.ceremony-content > p:not(.eyebrow) {
+
+    max-width: 500px;
+
+    margin: 30px auto 0;
+
+    font-family: Arial, sans-serif;
+
+    color: #806e63;
+
+    line-height: 1.7;
+
+    font-size: 17px;
+
+}
+
+
+.ceremony-scene {
+
+    position: relative;
+
+    width: min(800px, 95%);
+
+    height: 480px;
+
+    margin: 70px auto 40px;
+
+    overflow: hidden;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f6dfbd,
+            #d6a77e
+        );
+
+    box-shadow:
+        0 30px 70px
+        rgba(90,50,30,.16);
+
+}
+
+
+/* =====================================================
+   CEREMONY BROTHER
+===================================================== */
+
+.ceremony-brother {
+
+    position: absolute;
+
+    left: 20%;
+
+    bottom: 40px;
+
+    width: 180px;
+
+    height: 350px;
+
+}
+
+
+.ceremony-head {
+
+    position: relative;
+
+    width: 120px;
+
+    height: 120px;
+
+    margin: auto;
+
+}
+
+
+.ceremony-head .face {
+
+    position: absolute;
+
+    inset: 15px;
+
+    border-radius: 50%;
+
+    background: #b97955;
+
+}
+
+
+.hair {
+
+    position: absolute;
+
+    width: 125px;
+
+    height: 65px;
+
+    top: 5px;
+
+    border-radius:
+        70px 70px 25px 25px;
+
+    background: #3f3029;
+
+    z-index: 2;
+
+}
+
+
+.kurta {
+
+    width: 175px;
+
+    height: 240px;
+
+    margin: -5px auto;
+
+    border-radius:
+        40px 40px 15px 15px;
+
+    background: #668b96;
+
+}
+
+
+.kurta-collar {
+
+    width: 50px;
+
+    height: 70px;
+
+    margin: auto;
+
+    border-left:
+        3px solid rgba(255,255,255,.4);
+
+    border-right:
+        3px solid rgba(255,255,255,.4);
+
+}
+
+
+.brother-hand {
+
+    position: absolute;
+
+    right: -50px;
+
+    top: 220px;
+
+}
+
+
+.brother-wrist {
+
+    width: 130px;
+
+    height: 38px;
+
+    border-radius: 30px;
+
+    background: #b97955;
+
+    transform: rotate(-4deg);
+
+}
+
+
+/* =====================================================
+   CEREMONY SISTER
+===================================================== */
+
+.ceremony-sister {
+
+    position: absolute;
+
+    right: 18%;
+
+    bottom: 40px;
+
+    width: 180px;
+
+    height: 350px;
+
+}
+
+
+.long-hair {
+
+    position: absolute;
+
+    width: 135px;
+
+    height: 155px;
+
+    left: -7px;
+
+    top: 0;
+
+    border-radius:
+        70px 70px 55px 55px;
+
+    background: #3b2c28;
+
+    z-index: 0;
+
+}
+
+
+.saree {
+
+    width: 175px;
+
+    height: 240px;
+
+    margin: -5px auto;
+
+    border-radius:
+        40px 40px 15px 15px;
+
+    background: #b64f69;
+
+}
+
+
+.saree-border {
+
+    position: absolute;
+
+    bottom: 0;
+
+    width: 175px;
+
+    height: 25px;
+
+    background: #e1ae52;
+
+}
+
+
+.sister-hand {
+
+    position: absolute;
+
+    left: -70px;
+
+    top: 215px;
+
+    z-index: 5;
+
+}
+
+
+.sister-fingers {
+
+    width: 115px;
+
+    height: 28px;
+
+    border-radius: 30px;
+
+    background: #b97955;
+
+    transform: rotate(7deg);
+
+}
+
+
+/* =====================================================
+   ANIMATED RAKHI
+===================================================== */
+
+.tying-rakhi {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 58%;
+
+    width: 70px;
+
+    height: 70px;
+
+    transform:
+        translate(-50%, -50%);
+
+    z-index: 10;
+
+    animation:
+        rakhiTie 3s
+        ease-in-out
+        infinite;
+
+}
+
+
+.tying-thread {
+
+    position: absolute;
+
+    width: 330px;
+
+    height: 7px;
+
+    left: -130px;
+
+    top: 32px;
+
+    border-radius: 10px;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #b93451 0 15px,
+            #d66a7e 15px 20px
+        );
+
+}
+
+
+.tying-center {
+
+    position: absolute;
+
+    width: 65px;
+
+    height: 65px;
+
+    border-radius: 50%;
+
+    border:
+        8px solid #d6a84f;
+
+    background:
+        radial-gradient(
+            circle,
+            #ffe7a3,
+            #b93451 55%
+        );
+
+    box-shadow:
+        0 0 30px
+        rgba(255,211,115,.7);
+
+}
+
+
+.tying-gem {
+
+    position: absolute;
+
+    width: 17px;
+
+    height: 17px;
+
+    left: 50%;
+
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%)
+        rotate(45deg);
+
+    background: #fff0b5;
+
+}
+
+
+@keyframes rakhiTie {
+
+    0% {
+
+        transform:
+            translate(-50%, -50%)
+            rotate(-8deg);
+
+    }
+
+    50% {
+
+        transform:
+            translate(-50%, -50%)
+            rotate(8deg);
+
+    }
+
+    100% {
+
+        transform:
+            translate(-50%, -50%)
+            rotate(-8deg);
+
+    }
+
+}
+
+
+/* =====================================================
+   CEREMONY MESSAGE
+===================================================== */
+
+.ceremony-message {
+
+    margin-top: 50px;
+
+    font-family: Georgia, serif;
+
+    color: #806e63;
+
+    font-size: 20px;
+
+    line-height: 1.8;
+
+}
+
+
+.ceremony-message strong {
+
+    display: block;
+
+    margin-top: 15px;
+
+    color: #b93451;
+
+    font-size: 25px;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .letters-container {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .memory-page {
+
+        grid-template-columns: 1fr;
+
+        padding: 35px;
+
+    }
+
+
+    .memory-scene {
+
+        min-height: 400px;
+
+    }
+
+
+    .ceremony-brother {
+
+        left: 8%;
+
+    }
+
+
+    .ceremony-sister {
+
+        right: 8%;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .letters-container {
+
+        grid-template-columns: 1fr;
+
+        width: 85%;
+
+    }
+
+
+    .envelope {
+
+        height: 240px;
+
+    }
+
+
+    .memory-popup {
+
+        width: 94vw;
+
+    }
+
+
+    .memory-page {
+
+        padding: 25px 20px 45px;
+
+        gap: 20px;
+
+    }
+
+
+    .memory-writing {
+
+        padding: 10px;
+
+    }
+
+
+    .memory-scene {
+
+        min-height: 350px;
+
+    }
+
+
+    .ceremony-scene {
+
+        height: 400px;
+
+    }
+
+
+    .ceremony-brother {
+
+        left: 2%;
+
+        transform: scale(.72);
+
+        transform-origin: bottom;
+
+    }
+
+
+    .ceremony-sister {
+
+        right: 2%;
+
+        transform: scale(.72);
+
+        transform-origin: bottom;
+
+    }
+
+
+    .tying-rakhi {
+
+        top: 63%;
+
+    }
+
+
+    .tying-thread {
+
+        width: 230px;
+
+        left: -80px;
+
+    }
+
+}
